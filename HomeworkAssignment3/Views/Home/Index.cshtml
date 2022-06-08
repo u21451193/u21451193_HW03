@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Upload document here";
+}
+
+<h2 style="padding: 12px 0px 18px 0px">@ViewBag.Title</h2>
+<h6>Upload your documents, photos and videos here</h6>
+<div class="container">
+    <div class="row">
+        <div class="col-7" style="padding-top: 24px;">
+            <h4>Description</h4>
+
+            <p>
+                In homework assignment 3 we were tasked to create a website using HTML, CSS, JavaScript and Bootstrap within an MVC project.
+                For this assignment, we had to provide the users with options on were they would like to store their documents. The available options are as follows:
+                <ol>
+                    <li style="padding: 1px 0px;"> Documents</li>
+                    <li style="padding: 1px 0px;"> Images</li>
+                    <li style="padding: 1px 0px;"> Videos</li>
+                </ol>
+
+                The users proceed to choose which file they want to upload and it gets stored in one of the above mentioned folders. This makes it easier for the user
+                to organise their files. 
+
+                Now you may ask, how do you use this website. It's rather simple.
+                <ol>
+                    <li style="padding: 1px 0px;"> Select one of the radio buttons to the right -----------------></li>
+                    <li style="padding: 1px 0px;"> Click on the <kbd style="background: #808080">Choose File</kbd> button and select the file you wish to upload.</li>
+                    <li style="padding: 1px 0px;"> Click on the <kbd style="background: #808080">Submit</kbd> button to upload the file.</li>
+                </ol>
+                Once successful, use the navigation bar at the top of the screen to view the stored file according to the radio button you selected.
+
+            </p>
+        </div>
+
+        <div class="col-5" style="padding-top: 24px;">
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+            <div>
+                @Html.RadioButton("type", "Documents")      Document<br />
+                @Html.RadioButton("type", "Images")         Image<br />
+                @Html.RadioButton("type", "Videos")         Video<br />
+
+                <input type="file" name="Files" style="padding-bottom: 2px;" /> <br />
+
+                <input type="submit" name="Upload" style="padding-top: 2px;" />
+            </div>
+            }
+        </div>
+    </div>
+</div>

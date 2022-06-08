@@ -1,0 +1,43 @@
+﻿@model IEnumerable<HomeworkAssignment3.Models.FileModel>
+
+@{
+    ViewBag.Title = "Images";
+}
+
+<h2 style="padding: 12px 0px 18px 0px">@ViewBag.Title</h2>
+<h4>All the images that are in the folder are displayed</h4>
+
+<div class="container">
+    <div class="row">
+        @foreach (var img in Model)
+        {
+            <div class="col"  style="padding-top: 24px;">
+                <div>
+                    <a href="~/Media/Images/@img.FileName" data-fancybox="gallery" captions="@img.FileName">
+                        <img src="~/Media/Images/@img.FileName" alt="Alternate Text" style="width: 300px; height: 300px; padding: 10px; object-fit: cover"/>
+                    </a><br />
+                    <p>File Name: @Html.DisplayFor(modelitem => img.FileName)</p> <br />
+                    <div class="btn btn-success">@Html.ActionLink("Download", "DownloadFile", new { fileName = img.FileName })</div>
+                    <div class="btn btn-danger">@Html.ActionLink("Delete", "DeleteFile", new { fileName = img.FileName })</div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    $(document).ready(function ($) {
+        $(".gallery a").fancybox({
+            buttons: [
+                "slideShow",
+                "thumbs",
+                "zoom",
+                "fullScreen",
+                "share",
+                "close"
+            ],
+            loop: false,
+            protect: true
+        });
+    });
+</script>
